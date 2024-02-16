@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// taking the id and making sure when favorite is saved, theres no duplicate
+// The @uniqe gaurantes that
+model FavouriteRecipes {
+  id       Int @id @default(autoincrement())
+  recipeId Int @unique
+}
+
+//npx prisma db push will create the table in our database
